@@ -1,0 +1,109 @@
+<div class="list row">
+    <div class="col-md-6">
+        <button class="btn btn-primary" routerLink="/create">
+            Add new car
+        </button>
+        <ul class="list-group">
+            <li
+                    class="list-group-item"
+                    *ngFor="let car of cars; let i = index"
+                    style="width:630px;height:auto;">
+                    <div class="card-img-top-wrapper">
+                        <img class="card-img-top" src="http://localhost:8080{{car.imageUrl}}" alt="Car image" style="width:600;height:auto;">
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <div>
+                                <label><strong>Model:</strong></label> {{ car?.model?.name }}
+                            </div>
+                            <div>
+                                <label><strong>Year:</strong></label> {{ car?.year }}
+                            </div>
+                            <div>
+                                <label><strong>Mileage:</strong></label> {{ car?.mileage }} km
+                            </div>
+                            <div>
+                                <label><strong>Engine:</strong></label> {{ car?.engine }}
+                            </div>
+                            <div>
+                                <label><strong>Transmission:</strong></label> {{ car?.transmission }} 
+                            </div>
+                            <div>
+                                <label><strong>Description:</strong></label> {{ car?.description }}
+                            </div>
+                            <div>
+                                <label><strong>Price:</strong></label> {{ car?.price }} $
+                            </div>
+                            <div>
+                                <label><strong>Seller name:</strong></label> {{ car?.seller?.sellerName }}
+                            </div>
+                            <div>
+                                <label><strong>Seller email:</strong></label> {{ car?.seller?.sellerEmail }}
+                            </div>
+                            <div>
+                                <label><strong>Seller phone number:</strong></label> {{ car?.seller?.sellerPhoneNumber }}
+                            </div>
+                            <div class="form-group" *ngIf="!car.sold">
+                                <label for="buyer-name">Your name</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="buyer-name"
+                                        [(ngModel)]="buyer.buyerName"
+                                        name="buyer-name"/>
+                            </div>
+                            <div class="form-group" *ngIf="!car.sold">
+                                <label for="buyer-email">Your email</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="buyer-email"
+                                        [(ngModel)]="buyer.buyerEmail"
+                                        name="buyer-email"/>
+                            </div>
+                            <div class="form-group" *ngIf="!car.sold">
+                                <label for="buyer-phone-number">Your phone number</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="buyer-phone-number"
+                                        [(ngModel)]="buyer.buyerPhoneNumber"
+                                        name="buyer-phone-number"/>
+                            </div>
+                            <div *ngIf="car.sold">
+                                <label><strong>Buyer name:</strong></label> {{ car?.buyer?.buyerName }}
+                            </div>
+                            <div *ngIf="car.sold">
+                                <label><strong>Buyer email:</strong></label> {{ car?.buyer?.buyerEmail }}
+                            </div>
+                            <div *ngIf="car.sold">
+                                <label><strong>Buyer phone number:</strong></label> {{ car?.buyer?.buyerPhoneNumber }}
+                            </div>
+                            <div>
+                                <button *ngIf="!car.sold" class="btn btn-dark" (click)="buyCar(car?.id)">
+                                    Buy
+                                </button>
+                            </div>
+                            <div>
+                                <button *ngIf="car.sold" class="btn btn-info" >
+                                    Sold
+                                </button>
+                            </div>
+                            <br/>
+                            <div>
+                                <button class="btn btn-sm btn-secondary mr-2" routerLink="/car/{{ car.id }}">
+                                    Edit
+                                </button>
+                            </div>
+                            <br/>
+                            <div>
+                                <button class="btn btn-sm btn-danger mr-2" (click)="deleteCar(car?.id)">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </li>
+        </ul>
+    </div>
+</div>

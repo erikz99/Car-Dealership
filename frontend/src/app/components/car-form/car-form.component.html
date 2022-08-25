@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="edit-form col-md-6">
+        <h4>Create new Car</h4>
+        <form>
+            <div class="form-group">
+                <label for="brand">Brand</label>
+                <select id='brand' name='brand' [(ngModel)]="selectedBrand" class="form-control" (change)="fillModels()">
+                    <option *ngFor="let brand of brands" [value]="brand.name">
+                        {{brand.name}}
+                    </option>    
+                </select>
+            </div>
+            <div>
+                <label for="model">Model</label>
+                <select id='model' name='model' [(ngModel)]="car.modelId" class="form-control">
+                    <option *ngFor="let model of models" [value]="model.id">
+                        {{model.name}}
+                    </option>    
+                </select>
+            </div>
+            <div>
+                <label for="engine">Engine</label>
+                <select id='engine' name='engine' [(ngModel)]="car.engine" class="form-control">
+                    <option *ngFor="let engine of engines" [value]="engine">
+                        {{engine}}
+                    </option>    
+                </select>
+            </div>
+            <div>
+                <label for="transmission">Transmission</label>
+                <select id='transmission' name='transmission' [(ngModel)]="car.transmission" class="form-control">
+                    <option *ngFor="let transmission of transmissions" [value]="transmission">
+                        {{transmission}}
+                    </option>    
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="year"
+                        [(ngModel)]="car.year"
+                        name="year"
+                />
+            </div>
+            <div class="form-group">
+                <label for="mileage">Mileage</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="mileage"
+                        [(ngModel)]="car.mileage"
+                        name="mileage"
+                />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="description"
+                        [(ngModel)]="car.description"
+                        name="description"/>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="price"
+                        [(ngModel)]="car.price"
+                        name="price"/>
+            </div>
+
+            <div class="form-group">
+                <label for="seller-name">Seller name</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="seller-name"
+                        [(ngModel)]="car.seller.sellerName"
+                        name="seller-name"/>
+            </div>
+
+            <div class="form-group">
+                <label for="seller-email">Seller email</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="seller-email"
+                        [(ngModel)]="car.seller.sellerEmail"
+                        name="seller-phone-number"/>
+            </div>
+
+            <div class="form-group">
+                <label for="seller-phone-number">Seller phone number</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="seller-phone-number"
+                        [(ngModel)]="car.seller.sellerPhoneNumber"
+                        name="seller-phone-number"/>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <label class="btn btn-default p-0">
+                        <input type="file" (change)="selectFile($event)"/>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="btn btn-success"
+                (click)="saveCar()">
+                Save
+            </button>
+        </form>
+    </div>
+</div>
