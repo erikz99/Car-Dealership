@@ -43,6 +43,17 @@ public class CarController {
                 .toList();
     }
 
+    @GetMapping("/brand/{brandName}")
+    public List<CarDTO> getCarsByBrandName(@PathVariable String brandName) {
+        if (brandName.equals("ALL")) {
+            return getCars();
+        }
+        return carService.getCarsByBrand(brandName)
+                .stream()
+                .map(car -> modelMapper.map(car, CarDTO.class))
+                .toList();
+    }
+
     @GetMapping("/{carId}")
     public CarDTO getCarById(@PathVariable Long carId) {
         return modelMapper.map(carService.getCarById(carId), CarDTO.class);

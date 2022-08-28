@@ -35,6 +35,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> getCarsByBrand(String brandName) {
+        return carRepo.findByBrand(brandName);
+    }
+
+    @Override
     public Car getCarById(Long id) {
         return carRepo.findById(id).orElseThrow(() ->
                 new EntityNotFoundException(String.format("Car with ID=%s not found.", id)));

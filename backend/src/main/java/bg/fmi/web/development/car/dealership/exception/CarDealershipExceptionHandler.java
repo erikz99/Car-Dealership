@@ -14,6 +14,12 @@ public class CarDealershipExceptionHandler {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
     }
 
+    @ExceptionHandler({Exception.class})
+    public ResponseEntity<Object> handleCardDealershipException(Exception ex) {
+        String error = "Unknown error in application";
+        return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, error, ex));
+    }
+
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }

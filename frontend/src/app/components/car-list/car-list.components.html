@@ -3,6 +3,18 @@
         <button class="btn btn-primary" routerLink="/create">
             Add new car
         </button>
+        <br/>
+        <br/>
+        <div class="form-group">
+            <label for="brand">Brand</label>
+            <select id='brand' name='brand' [(ngModel)]="selectedBrand" class="form-control" (change)="fillCars()">
+                <option *ngFor="let brand of brands" [value]="brand">
+                    {{brand}}
+                </option>    
+            </select>
+        </div>
+        <br/>
+        <br/>
         <ul class="list-group">
             <li
                     class="list-group-item"
@@ -84,18 +96,17 @@
                                     Buy
                                 </button>
                             </div>
-                            <div>
-                                <button *ngIf="car.sold" class="btn btn-info" >
+                            <div *ngIf="car.sold">
+                                <button class="btn btn-info" >
                                     Sold
                                 </button>
                             </div>
                             <br/>
-                            <div>
+                            <div *ngIf="!car.sold">
                                 <button class="btn btn-sm btn-secondary mr-2" routerLink="/car/{{ car.id }}">
                                     Edit
                                 </button>
                             </div>
-                            <br/>
                             <div>
                                 <button class="btn btn-sm btn-danger mr-2" (click)="deleteCar(car?.id)">
                                     Delete

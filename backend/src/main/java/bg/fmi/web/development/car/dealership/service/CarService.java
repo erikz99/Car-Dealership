@@ -12,13 +12,15 @@ public interface CarService {
 
     List<Car> getCars();
 
+    List<Car> getCarsByBrand(String brandName);
+
     Car getCarById(Long id);
 
     Car createCar(CarRequest carRequest);
 
     Car updateCar(CarDTO car);
 
-     Car buyCar(Buyer request, Long carId);
+    Car buyCar(Buyer request, Long carId);
 
     void deleteCar(Long id);
 }

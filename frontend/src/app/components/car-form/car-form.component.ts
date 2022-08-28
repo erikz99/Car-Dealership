@@ -68,7 +68,6 @@ export class CarFormComponent implements OnInit {
   }
 
   fillModels(): void {
-    console.log(this.selectedBrand);
     this.brands.forEach(brand => {
       if (this.selectedBrand != undefined && brand.name === this.selectedBrand) {
         this.models = brand.models;
@@ -78,7 +77,7 @@ export class CarFormComponent implements OnInit {
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
-    if (this.selectedFiles !== undefined) {
+    if (this.selectedFiles) {
        const file: File | null = this.selectedFiles.item(0);
        if (file !== null) {
          this.currentFile = file;
@@ -87,8 +86,8 @@ export class CarFormComponent implements OnInit {
   }
 
   saveCar() {
-    if (this.car.id) {
-      if (this.currentFile) {
+    if (this.currentFile) {
+      if (this.car.id) {
         this.car.created = undefined;
         this.car.modified = undefined;
         this.carService.updateCar(this.car.id, this.car, this.currentFile)
@@ -100,18 +99,16 @@ export class CarFormComponent implements OnInit {
             console.error(error);
           });
       }
-    } else {
-      if (this.currentFile !== undefined) {
+      else {
         this.carService.createCar(this.car, this.currentFile)
-        .subscribe(
-          response => {
-            this.router.navigate([ '/cars' ]);
-          },
-          error => {
-            console.error(error);
-          });
+          .subscribe(
+            response => {
+              this.router.navigate([ '/cars' ]);
+            },
+            error => {
+              console.error(error);
+            });
       }
-    }
+    } 
   }
-
 }

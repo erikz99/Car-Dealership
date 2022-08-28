@@ -3,11 +3,10 @@ import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest, HttpParams
 import { Observable } from 'rxjs';
 import { Car } from '../model/car.model';
 import { Buyer } from '../model/buyer.model';
-import { Seller } from '../model/seller.model';
+import { environment } from 'src/environments/environment';
 
-const baseUrl = 'http://localhost:8080/api/v1/car-dealership';
-const brandUrl = `${baseUrl}/brands`
-const carUrl = `${baseUrl}/cars`
+const brandUrl = `${environment.host}/brands`
+const carUrl = `${environment.host}/cars`
 
 
 @Injectable({
@@ -29,6 +28,9 @@ export class CarFormService {
     return this.http.get(`${carUrl}`);
   }
 
+  getCarsByBrand(brandName: string): Observable<any> {
+    return this.http.get(`${carUrl}/brand/${brandName}`);
+  }
 
   createCar(data: Car, file: File): Observable<any> {
     const formData: FormData = new FormData();
@@ -71,5 +73,4 @@ export class CarFormService {
   deleteCar(id: number): Observable<any> {
     return this.http.delete(`${carUrl}/${id}`);
   }
-
 }

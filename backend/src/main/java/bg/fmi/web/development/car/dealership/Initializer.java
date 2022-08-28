@@ -87,5 +87,24 @@ public class Initializer implements CommandLineRunner {
         mercedes.getModels().add(modelCLS);
 
         brandRepository.save(mercedes);
+
+        Brand bmw = Brand.builder()
+                .name("BMW")
+                .models(new ArrayList<>())
+                .build();
+
+        bmw = brandRepository.save(bmw);
+
+        Model modelE92 = Model.builder()
+                .name("BMW E92")
+                .brand(bmw)
+                .startYear(1998)
+                .endYear(2022)
+                .build();
+
+        modelE92 = modelRepository.save(modelE92);
+        bmw.getModels().add(modelE92);
+
+        brandRepository.save(bmw);
     }
 }
